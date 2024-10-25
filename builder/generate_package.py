@@ -23,7 +23,7 @@ with open("openapi.yaml") as stream:
 openapi_json = json.dumps(data)
 
 # create a path for the new package
-release_pkg_dir = Path('openai_types/')
+release_pkg_dir = Path('lmos_openai_types/')
 release_pkg_dir.mkdir(parents=True, exist_ok=True)
 
 # create types
