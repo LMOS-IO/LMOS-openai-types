@@ -5,7 +5,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openai_types"
+name = "lmos_openai_types"
 version = "0.1.0"
 description = "A Python package for types related to OpenAI"
 license = { text = "apache2" }
@@ -24,7 +24,7 @@ where = ["."]
 include = ["openai_types"]
 
 [tool.setuptools]
-package-data = { "openai_types" = ["py.typed"] }
+package-data = { "lmos_openai_types" = ["py.typed"] }
 '''.strip()
 
 def generate_toml():
