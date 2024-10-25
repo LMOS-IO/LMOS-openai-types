@@ -21,7 +21,7 @@ repository = "https://github.com/LMOS-IO/openai-openapi"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["openai_types"]
+include = ["lmos_openai_types"]
 
 [tool.setuptools]
 package-data = { "lmos_openai_types" = ["py.typed"] }
