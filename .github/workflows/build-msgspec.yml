@@ -1,0 +1,54 @@
+name: Generate Python Package
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  generate-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Step 3: Install dependencies (if your script needs any)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r builder/requirements.txt
+
+      # Step 4: Run the Python script to generate the package
+      - name: Generate Python Package
+        run: |
+          python builder/generate_package.py --modeltype MsgspecStruct
+
+      # Step 5: Create or switch to the 'generated-package' branch
+      - name: Create or switch to generated-package branch
+        run: |
+          git checkout --orphan msgspec-gen
+
+      # Step 6: Commit the generated files
+      - name: Commit files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Auto-generated Python package" || echo "No changes to commit"
+
+      # Step 7: Push to the 'generated-package' branch
+      - name: Push to generated-package branch
+        run: |
+          git push --force origin msgspec-gen
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
