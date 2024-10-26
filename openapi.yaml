@@ -12764,7 +12764,7 @@ components:
           items:
             type: object
             required:
-              - finish_reason
+              # - finish_reason
               - index
               - logprobs
               - text

@@ -40,7 +40,7 @@ def gen(path):
         use_schema_description=True,
         use_subclass_enum=True,
         enum_field_as_literal="all",
-        # reuse_model=True,
+        reuse_model=True,
         # use_default_kwarg=True,
         field_constraints=True,
         # openapi_scopes=[OpenAPIScope.Parameters, OpenAPIScope.Paths, OpenAPIScope.Schemas, OpenAPIScope.Tags],
