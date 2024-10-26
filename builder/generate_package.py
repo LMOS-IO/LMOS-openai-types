@@ -29,6 +29,9 @@ release_pkg_dir.mkdir(parents=True, exist_ok=True)
 # create types
 
 def gen(path):
+    # this is only supported for pydantic
+    reuse_model = Settings.ModelType == DataModelType.PydanticV2BaseModel
+
     generate(
         input_=openapi_json,
         input_file_type=InputFileType.OpenAPI,
@@ -40,7 +43,7 @@ def gen(path):
         use_schema_description=True,
         use_subclass_enum=True,
         enum_field_as_literal="all",
-        reuse_model=True,
+        reuse_model=reuse_model,
         # use_default_kwarg=True,
         field_constraints=True,
         # openapi_scopes=[OpenAPIScope.Parameters, OpenAPIScope.Paths, OpenAPIScope.Schemas, OpenAPIScope.Tags],
